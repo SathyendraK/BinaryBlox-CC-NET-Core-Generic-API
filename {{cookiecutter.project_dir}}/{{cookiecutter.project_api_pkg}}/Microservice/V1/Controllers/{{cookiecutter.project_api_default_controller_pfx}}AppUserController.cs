@@ -12,6 +12,7 @@ using AutoMapper;
 using BinaryBlox.SDK.Configuration.ViewModels;
 using BinaryBlox.SDK.Constants;
 using BinaryBlox.SDK.Data.Models.Configuration;
+using BinaryBlox.SDK.Data.Models.Entity;
 using BinaryBlox.SDK.Data.Respository;
 using BinaryBlox.SDK.Web.Controllers;
 using BinaryBlox.SDK.Web.Http.Request;
@@ -37,7 +38,7 @@ namespace {{cookiecutter.project_api_pkg}}.Microservice.V1.Controllers
     public class {{cookiecutter.project_api_default_controller_pfx}}AppUserController : BxDynamicRestController<AppUser,
         AppUserViewModel,
         AppUserRequest,
-        AppUserResponse, int>
+        AppUserResponse, Guid>
     {
         public const string API_CONTROLLER_TAG = BinaryBlox.SDK.Account.Constants.OpenApiTagConstants.Account_ApiScope;
         
@@ -138,7 +139,22 @@ namespace {{cookiecutter.project_api_pkg}}.ViewModels
 {
 
 #pragma warning disable 1591
-    public class AppUserViewModel : BxEntityDto<int>, IAppUser
+
+ /// <summary>
+    /// 
+    /// </summary> 
+    public class AppUser :  BxAuditableEntityType<Guid>, IBxAttribOptions
+    {  
+        public AppUser(): base() {}
+
+        public bool Enabled { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Tel { get; set; }
+        public bool Email { get; set; } 
+    } 
+
+    public class AppUserViewModel : BxEntityDto<Guid>, IAppUser
     {
         public bool Enabled { get; set; }
         public string FirstName { get; set; }

@@ -180,6 +180,9 @@ namespace {{cookiecutter.project_api_pkg}}.DAL
 //*******************************************
 // EXAMPLE CODE
 //*******************************************
+
+AppUserViewModel
+        DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribAccessPriority> BxAttribAccessPriority { get; set; }
         // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribAccessPriority> BxAttribAccessPriority { get; set; }
         // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribTemplate> BxAttribTemplate { get; set; }
         // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribValType> BxAttribValType { get; set; }

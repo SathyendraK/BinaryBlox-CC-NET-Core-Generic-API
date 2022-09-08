@@ -35,49 +35,50 @@ try:
      # -*- Adding {{cookiecutter.project_identity_pkg}} Project -*-
     # -*- os.system('dotnet sln {{cookiecutter.project_dir}}.sln add {{cookiecutter.project_identity_pkg}}/{{cookiecutter.project_identity_pkg}}.csproj')
     # -*- print ("Project {{cookiecutter.project_identity_pkg}} added to solution...") 
-
-    # -*- Adding {{cookiecutter.project_api_pkg_account}} Project -*-
-    os.system('dotnet sln {{cookiecutter.project_dir}}.sln add {{cookiecutter.project_api_pkg_account}}/{{cookiecutter.project_api_pkg_account}}.csproj')  
-    print ("Project {{cookiecutter.project_api_pkg_account}} added to solution...")  
-
-    # -*- Adding {{cookiecutter.project_api_pkg_configuration}} Project -*-
-    os.system('dotnet sln {{cookiecutter.project_dir}}.sln add {{cookiecutter.project_api_pkg_configuration}}/{{cookiecutter.project_api_pkg_configuration}}.csproj')  
-    print ("Project {{cookiecutter.project_api_pkg_configuration}} added to solution...")  
-
+ 
     # -*- Adding {{cookiecutter.project_api_pkg}} Project -*-
     os.system('dotnet sln {{cookiecutter.project_dir}}.sln add {{cookiecutter.project_api_pkg}}/{{cookiecutter.project_api_pkg}}.csproj')
     print ("Project {{cookiecutter.project_api_pkg}} added to solution...") 
-
-     # -*- Adding {{cookiecutter.project_spa_pkg}} Project -*-
-    os.system('dotnet sln {{cookiecutter.project_dir}}.sln add {{cookiecutter.project_spa_pkg}}/{{cookiecutter.project_spa_pkg}}.csproj')
-    print ("Project {{cookiecutter.project_spa_pkg}} added to solution...") 
+ 
  
     # -*- Creating .net Solution file -*-
     os.system('dotnet restore')
     print ("Restoring solution dependencies...") 
 
-    # -*- Adding Migrations to Configuration API (Account API Migration not needed as dependencies migrated in Identity package.) -*- 
-    configuration_dir = os.path.join(cur_dir,'{{cookiecutter.project_api_pkg_configuration}}') 
-    os.chdir(configuration_dir)
+    generic_api_dir = os.path.join(cur_dir,'{{cookiecutter.project_api_pkg}}') 
 
-    print ("Adding Configuration API migrations..") 
+    generate_schema = "{{cookiecutter.project_generate_schema|lower}}"
+    if generate_schema == "true":  
+        print ("Schema Migration Generation: Creating Microservice(s) Schema migration(s)..." )
+        
+        # -*- Generic API Migrations
+        os.chdir(generic_api_dir) 
+        os.system('dotnet ef migrations add Initial{{cookiecutter.project_api_pfx}}ApiMigration -c BxApplicationDbContext -o Migrations')
+        print (bcolors.OKBLUE + "Created: {{cookiecutter.project_api_name}} Microservice migration from DbContext...") 
+    else: 
+        print(bcolors.WARNING + "Schema Migration Generation: Skipped....")
 
-    os.system('dotnet ef migrations add InitialConfigurationApiMigration -c BxApplicationDbContext -o Migrations')
-    print ("Adding Configuration BxApplicationDbContext migration added...") 
-
-    # -*- os.system('dotnet ef database update -c BxApplicationDbContext')
-    # -*- print ("Applying Configuration BxApplicationDbContext migration...") 
+    deploy_schema = "{{cookiecutter.project_deploy_schema|lower}}"
+    if deploy_schema == "true":  
+        print ("Schema Migration Deployment: Deploying Microservice(s) Schema migration(s)..." )
+        
+        # -*- Generic API Migrations 
+        os.chdir(generic_api_dir) 
+        os.system('dotnet ef database update -c BxApplicationDbContext')
+        print ("Deploying: {{cookiecutter.project_api_name}} Microservice migration from DbContext...") 
+    else: 
+        print(bcolors.WARNING + "Schema Migration Generation: Skipped....")
  
-    # -*- Adding Migrations to Identity Server -*- 
-    identity_dir = os.path.join(cur_dir,'{{cookiecutter.project_api_pkg_account}}') 
-    os.chdir(identity_dir)
+    launch_api = "{{cookiecutter.project_launch_api|lower}}"
+    if launch_api == "true":  
   
-    # -*- Building applicaton and seeding Identity Data -*- 
-    # -*- print ("Starting Account API...") 
-    # -*- os.system('dotnet run --environment=development')
+        print (bcolors.OKBLUE + "Launch: Starting {{cookiecutter.project_api_name}} Microservice...") 
+        os.system('dotnet run --environment=development')
+    else: 
+        print(bcolors.WARNING + "Launch: Skipped....")
     
      
 except OSError:
-    print (bcolors.WARNING + "<<< Creation of project: {{cookiecutter.project_api_pkg|upper}} failed" % cur_dir)
+    print (bcolors.FAIL + "<<< Creation of project: {{cookiecutter.project_api_pkg|upper}} failed" % cur_dir)
 else:
     print (bcolors.OKGREEN + "<<< Successfully created the project: {{cookiecutter.project_dir|upper}} [🍺 <BEER TIME> 🍺] >>>" + bcolors.ENDC)
