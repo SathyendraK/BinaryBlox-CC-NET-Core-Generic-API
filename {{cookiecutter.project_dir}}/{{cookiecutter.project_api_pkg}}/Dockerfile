@@ -10,14 +10,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /src
-COPY ["{{cookiecutter.project_api_pkg_configuration}}/{{cookiecutter.project_api_pkg_configuration}}.csproj", "{{cookiecutter.project_api_pkg_configuration}}/"]
-RUN dotnet restore "{{cookiecutter.project_api_pkg_configuration}}/{{cookiecutter.project_api_pkg_configuration}}.csproj"
+COPY ["{{cookiecutter.project_api_pkg}}/{{cookiecutter.project_api_pkg}}.csproj", "{{cookiecutter.project_api_pkg}}/"]
+RUN dotnet restore "{{cookiecutter.project_api_pkg}}/{{cookiecutter.project_api_pkg}}.csproj"
 COPY . .
-WORKDIR "/src/{{cookiecutter.project_api_pkg_configuration}}"
-RUN dotnet build "{{cookiecutter.project_api_pkg_configuration}}.csproj" -c Release -o /app/build
+WORKDIR "/src/{{cookiecutter.project_api_pkg}}"
+RUN dotnet build "{{cookiecutter.project_api_pkg}}.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "{{cookiecutter.project_api_pkg_configuration}}.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "{{cookiecutter.project_api_pkg}}.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
@@ -25,4 +25,4 @@ COPY --from=publish /app/publish .
 
 # IMPORTANT: Swagger paths might not work if this is disabled.
 ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
-ENTRYPOINT ["dotnet", "{{cookiecutter.project_api_pkg_configuration}}.dll"]
+ENTRYPOINT ["dotnet", "{{cookiecutter.project_api_pkg}}.dll"]
