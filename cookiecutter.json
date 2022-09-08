@@ -1,0 +1,43 @@
+{
+  "author_name": "Tony Henderson",
+  "author_email": "tony@binaryblox.com",
+  "author_company": "Company",
+  "author_url": "https://binaryblox.com",
+  "project_name": "Project Name",
+  "project_description": "{{cookiecutter.project_name}} description to be added later.",
+  "project_target": ["net6.0"],
+  "project_target_version": ["6.0.1"],
+  "project_id4_target_version": ["6.0.0"], 
+  "project_authority_server": ["https://localhost:5001"], 
+  "project_sdk_version":  "1.0.3-alpha.4", 
+  "project_dir": "{{cookiecutter.project_name|replace(' ', '.')}}.Project",
+  "project_api_global_pfx_id" : "binaryblox",
+  "project_api_global_pfx" : ["bx","{{cookiecutter.project_api_global_pfx_id|lower}}_{{cookiecutter.project_name|lower|replace(' ', '_')}}", "{{cookiecutter.project_name|lower|replace(' ', '_')}}"],
+  "project_api_name": "{{cookiecutter.project_name}} API Name", 
+  "project_api_pkg": [
+    "{{cookiecutter.project_api_name|replace(' ', '.')}}.API",
+    "{{cookiecutter.project_api_name|lower|replace(' ', '-')}}-api"
+  ],
+  "project_api_pfx": "{{cookiecutter.project_api_name|replace(' ', '')}}Api",
+  "project_api_const_pfx": "{{cookiecutter.project_api_name|replace(' ', '_')}}_Api", 
+  "project_api_default_controller_pfx": "SomePrefix", 
+  "project_identity_name": "{{cookiecutter.project_name}} Identity",
+  "project_identity_pkg": [
+    "{{cookiecutter.project_identity_name|replace(' ', '.')}}.Server",
+    "{{cookiecutter.project_identity_name|lower|replace(' ', '-')}}-server"
+  ],
+  "project_identity_pfx": "{{cookiecutter.project_identity_name|replace(' ', '')}}Server",
+  "project_identity_const_pfx": "{{cookiecutter.project_identity_name|replace(' ', '_')}}_Server",
+  "project_identity_spa_url": "http://localhost:3000",
+  "project_identity_token_timeout": "900",  
+  "project_db_server": "localhost",
+  "project_db_name": "{{cookiecutter.project_api_pkg|lower}}.dev",
+  "project_db_user": "sa",
+  "project_db_pwd": "KP_g00cortp_2020",
+  "project_rel_notes": "{{cookiecutter.project_name}}: Date: {% now 'utc', '%Y' %} Release notes",
+  "git_user": "binaryblox",
+  "git_token": "xxx",
+  "git_repo_id": "BinaryBlox-Repository",
+  "git_repo_path": "https://github.com/{{cookiecutter.git_user|lower}}/{{cookiecutter.git_repo_id|lower}}.git",
+  "_copy_without_render": ["*.tpl.md"]
+}

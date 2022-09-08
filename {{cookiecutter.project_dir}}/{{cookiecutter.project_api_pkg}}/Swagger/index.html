@@ -1,0 +1,132 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>%(DocumentTitle)</title>
+    <!-- <link rel="stylesheet" type="text/css" href="/swagger-ui/themes/css/theme-material.css"> -->
+    <link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+    <!-- 
+    <link rel="stylesheet" type="text/css" href="/swagger-ui/themes/css/theme-flattop.css">
+    <link rel="stylesheet" type="text/css" href="/swagger-ui/themes/css/theme-material.css">
+    <link rel="stylesheet" type="text/css" href="/swagger-ui/themes/css/theme-monokai.css">
+    <link rel="stylesheet" type="text/css" href="/swagger-ui/themes/css/theme-muted.css">
+    <link rel="stylesheet" type="text/css" href="/swagger-ui/themes/css/theme-newspaper.css">
+    <link rel="stylesheet" type="text/css" href="/swagger-ui/themes/css/theme-outline.css">
+    <link rel="stylesheet" type="text/css" href="/swagger-ui/themes/css/theme-feeling-blue.css"> 
+    -->
+    <link rel="icon" type="image/png" href="/swagger-ui/themes/logos/favicon-16x16.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/swagger-ui/themes/logos/favicon-16x16.png" sizes="16x16" />
+    <style>
+      html
+      {
+        box-sizing: border-box;
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+      }
+
+      *,
+      *:before,
+      *:after
+      {
+        box-sizing: inherit;
+      }
+
+      body
+      {
+        margin:0;
+        background: #fafafa;
+      }
+
+      .swagger-ui .topbar {
+        background-color: #1e2e38;
+        background-image: url("/swagger-ui/themes/images/main-bg-repeat.png");
+      }
+ 
+      .topbar-wrapper span:after {
+          content: 'API Version:';
+          color: #fff;
+          visibility: visible;
+          display: block;
+          position: relative;
+          /* right: 10px; */
+          padding: 5px;
+          /* top: 2px; */
+      }
+
+      .topbar-wrapper span {
+          visibility: hidden;
+      }
+ 
+      /* .swagger-ui .information-container  {
+ 
+          background-color: #efefef;
+          background-image: url("https://images.squarespace-cdn.com/content/v1/599dace9914e6b777581f405/1523389502489-UGIHT6L0TU3LCBCIXRL8/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0pE4cef1KNtWo36k-CFnr6wOF2g5O-PFkVuvW_ba6dQUZZpzEt6WQHHQe4EHY-NJIA/Chamai-4x6.png") !important;
+      }  */
+
+       /* For different background 
+        /* .topbar-wrapper img {
+            content: url('mylogo.jpg');
+        }
+
+        .topbar-wrapper img[alt="Swagger UI"],
+        .topbar-wrapper span {
+            visibility: hidden;
+        }
+
+        .topbar-wrapper span:after {
+            content: 'mylogo';
+            color: #fff;
+            visibility: visible;
+            display: block;
+            position: absolute;
+            padding: 5px;
+            top: 2px;
+        } */
+    </style>
+    %(HeadContent)
+  </head>
+
+  <body>
+    <!-- <div>
+      <h1>Example.com</h1>
+    </div> -->
+    <div id="swagger-ui"></div>
+
+    <!-- Workaround for https://github.com/swagger-api/swagger-editor/issues/1371 -->
+    <script>
+      if (window.navigator.userAgent.indexOf("Edge") > -1) {
+        console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
+        window.fetch = undefined;
+      }
+    </script>
+
+    <script src="./swagger-ui-bundle.js"> </script>
+    <script src="./swagger-ui-standalone-preset.js"> </script>
+    <script>
+    window.onload = function() {
+      var configObject = JSON.parse('%(ConfigObject)');
+      var oauthConfigObject = JSON.parse('%(OAuthConfigObject)');
+
+      // Apply mandatory parameters
+      configObject.dom_id = "#swagger-ui";
+      configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];
+      configObject.layout = "StandaloneLayout";
+
+      // If oauth2RedirectUrl isn't specified, use the built-in default
+      if (!configObject.hasOwnProperty("oauth2RedirectUrl"))
+        configObject.oauth2RedirectUrl = window.location.href.replace("index.html", "oauth2-redirect.html").split('#')[0];
+
+      // Begin Swagger UI call region
+
+      const ui = SwaggerUIBundle(configObject);
+
+      ui.initOAuth(oauthConfigObject);
+
+      // End Swagger UI call region
+
+      window.ui = ui
+    }
+  </script>
+  </body>
+</html>

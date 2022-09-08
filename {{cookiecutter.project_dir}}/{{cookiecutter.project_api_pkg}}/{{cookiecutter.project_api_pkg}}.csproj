@@ -1,0 +1,139 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<!-- IMPORTANT: DO NOT HAVE ANY SPACES IN XML -->
+	  <TargetFramework>{{cookiecutter.project_target}}</TargetFramework>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>  
+    <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+		<!-- <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel> --> 
+	</PropertyGroup>
+ 
+  <!-- BinaryBlox -->
+  <ItemGroup> 
+    <PackageReference Include="BinaryBlox.SDK" Version="{{cookiecutter.project_sdk_version}}" />
+  </ItemGroup>
+ 
+  <!-- Net .Razor -->
+  <PropertyGroup>
+    <AddRazorSupportForMvc>false</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+   <!-- Typescript -->
+   <PropertyGroup>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+  </PropertyGroup> 
+
+  <ItemGroup> 
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.2.0"/>
+  </ItemGroup>
+ 
+  <!-- XML Documentation & API Versioning -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\{{cookiecutter.project_api_pkg}}.xml</DocumentationFile>
+  </PropertyGroup>
+
+  
+   <!-- Net Core Framework -->
+  <ItemGroup> 
+    <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.5"/> 
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0"/> 
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="{{cookiecutter.project_target_version}}"/>   
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="{{cookiecutter.project_target_version}}" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="{{cookiecutter.project_target_version}}" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="{{cookiecutter.project_target_version}}" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="{{cookiecutter.project_target_version}}">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="{{cookiecutter.project_target_version}}"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="{{cookiecutter.project_target_version}}"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="{{cookiecutter.project_target_version}}" PrivateAssets="All"/>
+  </ItemGroup>
+  
+  <!-- Microsoft Extensions -->
+  <ItemGroup> 
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.22"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="6.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
+  </ItemGroup>
+ 
+  <!-- Identity Server -->
+  <ItemGroup>
+    <PackageReference Include="Duende.IdentityServer" Version="{{cookiecutter.project_id4_target_version}}"/>
+    <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="{{cookiecutter.project_id4_target_version}}"/>
+    <PackageReference Include="Duende.IdentityServer.EntityFramework.Storage" Version="{{cookiecutter.project_id4_target_version}}"/>
+    <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="{{cookiecutter.project_id4_target_version}}"/>
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1"/>
+  </ItemGroup>
+ 
+  <!-- OpenAPI  --> 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.OpenApi" Version="1.3.1-preview" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.3"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.2.3"/>
+  </ItemGroup>
+
+  <!-- Third Party libs -->
+  <ItemGroup>   
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" /> 
+    <PackageReference Include="AutoMapper" Version="11.0.0"/> 
+    <PackageReference Include="Serilog" Version="2.10.0"/>
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0"/>
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1"/>
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>   
+    <PackageReference Include="StoredProcedureEFCore" Version="1.0.5"/>
+  </ItemGroup>
+ 
+  <!-- Utility -->
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6"/>  
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.0"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0"/>  
+  </ItemGroup>
+
+  <!-- CLI Tools -->
+  <ItemGroup>
+    <!-- <DotNetCliToolReference Include="Swashbuckle.AspNetCore.Cli" Version="5.3.3" /> -->
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.1.0-preview1-final"/>
+  </ItemGroup>
+
+  <!-- SDK Ref & Other configurations -->
+  <!-- <ItemGroup>
+    <ProjectReference Include="..\BinaryBlox.SDK\BinaryBlox.SDK.csproj"/>
+  </ItemGroup> -->
+  <ItemGroup> 
+    <EmbeddedResource Remove="Swagger\index.html" /> 
+    <None Remove="Swagger\index.html" /> 
+  </ItemGroup> 
+  <ItemGroup>
+     <EmbeddedResource Include="Swagger\index.html" /> 
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="wwwroot\swagger-ui\themes\css\swagger-custom-styles.css" />
+    <None Remove="wwwroot\swagger-ui\themes\scripts\swagger-custom-script.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\swagger-ui\themes\css\swagger-custom-styles.css" />
+    <None Include="wwwroot\swagger-ui\themes\scripts\swagger-custom-script.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\"/>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Logs\**"/>
+    <None Remove="Logs\**"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\**\*" CopyToPublishDirectory="PreserveNewest"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Helpers\Templates\*.template" CopyToPublishDirectory="PreserveNewest"/>
+  </ItemGroup>
+</Project>
