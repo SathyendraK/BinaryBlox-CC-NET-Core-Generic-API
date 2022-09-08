@@ -9,28 +9,28 @@ namespace {{cookiecutter.project_api_pkg}}.Identity.Authorization
 {     
   public class ApiPolicies
     {
-        ///<summary>Policy to allow viewing all user {{cookiecutter.project_api_name_configuration}} records.</summary>
+        ///<summary>Policy to allow viewing all user {{cookiecutter.project_api_name}} records.</summary>
         public const string ViewAllApiUsersPolicy = "View All Users";
 
-        ///<summary>Policy to allow adding, removing and updating all {{cookiecutter.project_api_name_configuration}} user records.</summary>
+        ///<summary>Policy to allow adding, removing and updating all {{cookiecutter.project_api_name}} user records.</summary>
         public const string ManageAllApiUsersPolicy = "Manage All Users";
 
         /// <summary>Policy to allow viewing details of all roles.</summary>
         public const string ViewAllApiRolesPolicy = "View All Roles";
 
-        /// <summary>Policy to allow viewing details of all or specific {{cookiecutter.project_api_name_configuration}} roles (Requires roleName as parameter).</summary>
+        /// <summary>Policy to allow viewing details of all or specific {{cookiecutter.project_api_name}} roles (Requires roleName as parameter).</summary>
         public const string ViewApiRoleByApiRoleNamePolicy = "View Role by RoleName";
 
-        /// <summary>Policy to allow adding, removing and updating all {{cookiecutter.project_api_name_configuration}} roles.</summary>
+        /// <summary>Policy to allow adding, removing and updating all {{cookiecutter.project_api_name}} roles.</summary>
         public const string ManageAllApiRolesPolicy = "Manage All Roles";
 
-        /// <summary>Policy to allow assigning {{cookiecutter.project_api_name_configuration}} roles the user has access to (Requires new and current {{cookiecutter.project_api_name_configuration}} roles as parameter).</summary>
+        /// <summary>Policy to allow assigning {{cookiecutter.project_api_name}} roles the user has access to (Requires new and current {{cookiecutter.project_api_name}} roles as parameter).</summary>
         public const string AssignAllowedApiRolesPolicy = "Assign Allowed Roles"; 
         
     }
  
     /// <summary>
-    /// Operation Policy to allow adding, viewing, updating and deleting general or specific user {{cookiecutter.project_api_name_configuration}} records.
+    /// Operation Policy to allow adding, viewing, updating and deleting general or specific user {{cookiecutter.project_api_name}} records.
     /// </summary>
     public static class ApiAccountManagementOperations
     {
