@@ -39,7 +39,7 @@ namespace {{cookiecutter.project_api_pkg}}.Microservice.V1.Controllers
         AppUserRequest,
         AppUserResponse, Guid>
     {
-        public const string API_CONTROLLER_TAG = BinaryBlox.SDK.Account.Constants.OpenApiTagConstants.Account_ApiScope;
+        public const string API_CONTROLLER_TAG = "AppUserController";
         
         /// <summary>
         /// 
