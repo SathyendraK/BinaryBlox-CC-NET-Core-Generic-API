@@ -8,16 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using AutoMapper;
-
-using BinaryBlox.SDK.Configuration.ViewModels;
-using BinaryBlox.SDK.Constants;
-using BinaryBlox.SDK.Data.Models.Configuration;
+ 
+using BinaryBlox.SDK.Constants; 
 using BinaryBlox.SDK.Data.Respository;
 using BinaryBlox.SDK.Web.Controllers;
 using BinaryBlox.SDK.Web.Http.Request;
-using BinaryBlox.SDK.Web.Http.Response; 
-using BinaryBlox.SDK.Configuration.Repository;
-using BinaryBlox.SDK.Configuration.Constants;
+using BinaryBlox.SDK.Web.Http.Response;  
 
 using Serilog;
 
@@ -25,7 +21,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using IdentityServer4.AccessTokenValidation; 
 
 using {{cookiecutter.project_api_pkg}}.DAL;
-using {{cookiecutter.project_api_pkg}}.Microservice.V1.ViewModels;
+using {{cookiecutter.project_api_pkg}}.ViewModels;
 
 namespace {{cookiecutter.project_api_pkg}}.Microservice.V1.Controllers
 {

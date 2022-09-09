@@ -206,21 +206,12 @@ namespace {{cookiecutter.project_api_pkg}} {
         override public void ConfigureRepositoryScope(IServiceCollection services)
         {
             base.ConfigureRepositoryScope(services);
+
             //***************************************
             // Example Code
             //***************************************
             // DI for Dependency Injection.
-            // services.AddScoped<BxAttribAccessPriorityRepository>();
-            // services.AddScoped<BxAttribTemplateRepository>();
-            // services.AddScoped<BxAttribValTypeRepository>();
-            // services.AddScoped<BxConfigurationRepository>();
-            // services.AddScoped<BxConfigurationAccessPriorityRepository>();
-            // services.AddScoped<BxConfigurationAttribValRepository>();
-            // services.AddScoped<BxConfigurationAttribValOverrideRepository>();
-            // services.AddScoped<BxConfigurationMediaRepository>();
-            // services.AddScoped<BxConfigurationTemplateRepository>();
-            // services.AddScoped<BxConfigurationTypeRepository>();
-            // services.AddScoped<BxPriorityRankRepository>();
+            services.AddScoped<AppUserRepository>(); 
         }
 
         /// <summary>

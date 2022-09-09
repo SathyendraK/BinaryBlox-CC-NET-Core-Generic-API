@@ -180,21 +180,9 @@ namespace {{cookiecutter.project_api_pkg}}.DAL
 //*******************************************
 // EXAMPLE CODE
 //*******************************************
-
-AppUserViewModel
+ 
         DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribAccessPriority> BxAttribAccessPriority { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribAccessPriority> BxAttribAccessPriority { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribTemplate> BxAttribTemplate { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribValType> BxAttribValType { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxConfiguration> BxConfiguration { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxConfigurationAccessPriority> BxConfigurationAccessPriority { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxConfigurationAttribVal> BxConfigurationAttribVal { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxConfigurationAttribValOverride> BxConfigurationAttribValOverride { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxConfigurationMedia> BxConfigurationMedia { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxConfigurationTemplate> BxConfigurationTemplate { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxConfigurationType> BxConfigurationType { get; set; }
-        // public DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxPriorityRank> BxPriorityRank { get; set; }
-
+        
         /// <summary>
         /// 
         /// </summary>

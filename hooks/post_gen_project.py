@@ -61,13 +61,13 @@ try:
     deploy_schema = "{{cookiecutter.project_deploy_schema|lower}}"
     if deploy_schema == "true":  
         print ("Schema Migration Deployment: Deploying Microservice(s) Schema migration(s)..." )
-        
+
         # -*- Generic API Migrations 
         os.chdir(generic_api_dir) 
         os.system('dotnet ef database update -c BxApplicationDbContext')
         print ("Deploying: {{cookiecutter.project_api_name}} Microservice migration from DbContext...") 
     else: 
-        print(bcolors.WARNING + "Schema Migration Generation: Skipped....")
+        print(bcolors.WARNING + "Schema Migration Deployment: Skipped....")
  
     launch_api = "{{cookiecutter.project_launch_api|lower}}"
     if launch_api == "true":  
