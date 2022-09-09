@@ -30,7 +30,7 @@ using {{cookiecutter.project_api_pkg}}.Repository;
 #pragma warning disable 1591
 namespace {{cookiecutter.project_api_pkg}}.Microservice.V1.Controllers
 {
-   {
+ 
     [ApiController]
     [Route("api/[controller]")]
     [ApiVersion("1.0")]
@@ -128,8 +128,8 @@ namespace {{cookiecutter.project_api_pkg}}.Microservice.V1.Controllers
         #endregion
     }
 
-    public class AppUserResponse : BxResponse<AppUserViewModel, int> { }
-    public class AppUserRequest : BxRequest<AppUserViewModel, int> { }
+    public class AppUserResponse : BxResponse<AppUserViewModel, Guid> { }
+    public class AppUserRequest : BxRequest<AppUserViewModel, Guid> { }
 
 
 }
@@ -142,7 +142,7 @@ namespace {{cookiecutter.project_api_pkg}}.ViewModels
  /// <summary>
     /// 
     /// </summary> 
-    public class AppUser :  BxAuditableEntityType<Guid>, IBxAttribOptions
+    public class AppUser :  BxAuditableEntityType<Guid>
     {  
         public AppUser(): base() {}
 
@@ -153,7 +153,7 @@ namespace {{cookiecutter.project_api_pkg}}.ViewModels
         public bool Email { get; set; } 
     } 
 
-    public class AppUserViewModel : BxEntityDto<Guid>, IAppUser
+    public class AppUserViewModel : BxEntityDto<Guid>
     {
         public bool Enabled { get; set; }
         public string FirstName { get; set; }
