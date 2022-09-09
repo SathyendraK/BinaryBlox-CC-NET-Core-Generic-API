@@ -165,9 +165,9 @@ namespace {{cookiecutter.project_api_pkg}}.ViewModels
 
 namespace {{cookiecutter.project_api_pkg}}.Repository
 {
-    public class AppUserRepository : BxRepository<AppUser, BxIdentityDbContext>
+    public class AppUserRepository : BxRepository<AppUser, {{cookiecutter.project_api_pfx}}IdentityDbContext>
     {
-        public AppUserRepository(BxIdentityDbContext context) : base(context) { }
+        public AppUserRepository({{cookiecutter.project_api_pfx}}IdentityDbContext context) : base(context) { }
     }
 }
 

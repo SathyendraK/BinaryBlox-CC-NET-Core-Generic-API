@@ -181,7 +181,7 @@ namespace {{cookiecutter.project_api_pkg}}.DAL
 // EXAMPLE CODE
 //*******************************************
  
-        DbSet<BinaryBlox.SDK.Data.Models.Configuration.BxAttribAccessPriority> BxAttribAccessPriority { get; set; }
+        DbSet<{{cookiecutter.project_api_pkg}}.ViewModels.AppUser> AppUser { get; set; }
         
         /// <summary>
         /// 
