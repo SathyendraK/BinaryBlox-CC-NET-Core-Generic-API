@@ -25,7 +25,7 @@ using BinaryBlox.SDK.Utils;
 using {{cookiecutter.project_api_pkg}}.Constants;
 using {{cookiecutter.project_api_pkg}}.DAL;
 using {{cookiecutter.project_api_pkg}}.DAL.Configuration; 
-using {{cookiecutter.project_api_pkg}}.Respository;
+using {{cookiecutter.project_api_pkg}}.Repository;
 using {{cookiecutter.project_api_pkg}}.Microservice; 
 using {{cookiecutter.project_api_pkg}}.Mapper; 
 
